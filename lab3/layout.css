@@ -62,6 +62,6 @@ body{
 	float: left;
 }
 
-a:hover, h1:hover, h2:hover, p:hover, ul:hover, dt:hover, dd:hover, th:hover, td:hover, li:hover, caption:hover{
+div > *:not(div):hover {
 	background-color: #ffff00;
 }
