@@ -1,0 +1,208 @@
+1.  Create DB and tables
+
+Create the following table in the college DB.
+
+- CREATE TABLE student( student_id int primary key, name varchar(10), year smallint default "1", dept_no int, major varchar(20) NOT NULL );
+
+
+Modify student and department table.
+
+-CREATE TABLE department(
+   -> dept_no int PRIMARY KEY AUTO_INCREMENT,
+   -> dept_name varchar(20) UNIQUE,
+   -> office varchar(20),
+   -> office_tel varchar(13) NOT NULL);
+
+
+
+2. Insert data
+
+Insert the following data to the corresponding table.
+
+- insert into student values (20070002, 'James Bond', 3, 4, 'Business Administration’), (20060001, 'Queenie', 4, 4, 'Business Administration’), (20030001, 'Reonardo', 4, 2, 'Electronic Engineering’), (20040003, 'Julia', 3, 2, 'Electronic Engineering’), (20060002, 'Roosevelt', 3, 1, 'Computer Science') (20100002, 'Fearne', 3, 4, 'Business Administration’), 20110001, 'Chloe', 2, 1, 'Computer Science'), (20080003, 'Amy', 4, 3, 'Law'), (20040002, 'Selina', 4, 5, 'English Literature'), (20070001, 'Ellen', 4, 4, 'Business Administration’), (20100001, 'Kathy', 3, 4, 'Business Administration'), (20110002, 'Lucy', 2, 2, 'Electronic Engineering'), (20030002, 'Michelle', 5, 1, 'Computer Science'), (20070003, 'April', 4, 3, 'Law'), (20070005, 'Alicia', 2, 5, 'English Literature'), (20100003, 'Yullia', 3, 1, 'Computer Science'), (20070007, 'Ashlee', 2, 4, 'Business Administration’);
+
+
+Insert the following data to the corresponding table.
+
+-insert into department (dept_name, office, office_tel)                       -> values  ('Computer Science', 'Engineering building', '02-3290-0123’), ('Electronic Engineering', 'Engineering building', '02-3290-2345'), ('Law', 'Law building', '02-3290-7896'), ( 'Business Administration', 'Administration building', '02-3290-1112'), ('English Literature', 'Literature building', '02-3290-4412’);
+
+
+3. Update & delete data
+
+Update or delete data to reflect the following facts on the college DB.
+
+- update department set dept_name='Electronic and Electrical Engineering' where dept_name=‘Electronic engineering’;
+- insert into department (dept_name, office, office_tel)
+    -> values ('Education', 'Education Bilding', '02-3290-2347’);
+
+- update student set major='Education' where name = 'Chloe';
+
+- delete from student where name='Michelle’;
+
+
+- delete from student where name='Fearne’;
+
+
+4. Query data
+
+
+mysql> select *from student where major='Computer Science'
+    -> ;
++------------+-----------+------+---------+------------------+
+| student_id | name      | year | dept_no | major            |
++------------+-----------+------+---------+------------------+
+|   20060002 | Roosevelt |    3 |       1 | Computer Science |
+|   20100003 | Yullia    |    3 |       1 | Computer Science |
++------------+-----------+------+---------+------------------+
+2 rows in set (0.01 sec)
+
+
+mysql> select student_id,year,major from student;
++------------+------+-------------------------+
+| student_id | year | major                   |
++------------+------+-------------------------+
+|   20030001 |    4 | Electronic Engineering  |
+|   20040002 |    4 | English Literature      |
+|   20040003 |    3 | Electronic Engineering  |
+|   20060001 |    4 | Business Administration |
+|   20060002 |    3 | Computer Science        |
+|   20070001 |    4 | Business Administration |
+|   20070002 |    3 | Business Administration |
+|   20070003 |    4 | Law                     |
+|   20070005 |    2 | English Literature      |
+|   20070007 |    2 | Business Administration |
+|   20080003 |    4 | Law                     |
+|   20100001 |    3 | Business Administration |
+|   20100003 |    3 | Computer Science        |
+|   20110001 |    2 | Education               |
+|   20110002 |    2 | Electronic Engineering  |
++------------+------+-------------------------+
+15 rows in set (0.00 sec)
+
+mysql> select *from student where year='3';
++------------+------------+------+---------+-------------------------+
+| student_id | name       | year | dept_no | major                   |
++------------+------------+------+---------+-------------------------+
+|   20040003 | Julia      |    3 |       2 | Electronic Engineering  |
+|   20060002 | Roosevelt  |    3 |       1 | Computer Science        |
+|   20070002 | James Bond |    3 |       4 | Business Administration |
+|   20100001 | Kathy      |    3 |       4 | Business Administration |
+|   20100003 | Yullia     |    3 |       1 | Computer Science        |
++------------+------------+------+---------+-------------------------+
+5 rows in set (0.00 sec)
+
+
+mysql> select *from student where year='1' || year='2';
++------------+--------+------+---------+-------------------------+
+| student_id | name   | year | dept_no | major                   |
++------------+--------+------+---------+-------------------------+
+|   20070005 | Alicia |    2 |       5 | English Literature      |
+|   20070007 | Ashlee |    2 |       4 | Business Administration |
+|   20110001 | Chloe  |    2 |       1 | Education               |
+|   20110002 | Lucy   |    2 |       2 | Electronic Engineering  |
++------------+--------+------+---------+-------------------------+
+4 rows in set (0.00 sec)
+
+
+select * from student where dept_no=(select dept_no from department where dept_name='Business Administration');
+
+
+5. Advanced query
+
+
+mysql> select *from student where student_id like '%2007%';
++------------+------------+------+---------+-------------------------+
+| student_id | name       | year | dept_no | major                   |
++------------+------------+------+---------+-------------------------+
+|   20070001 | Ellen      |    4 |       4 | Business Administration |
+|   20070002 | James Bond |    3 |       4 | Business Administration |
+|   20070003 | April      |    4 |       3 | Law                     |
+|   20070005 | Alicia     |    2 |       5 | English Literature      |
+|   20070007 | Ashlee     |    2 |       4 | Business Administration |
++------------+------------+------+---------+-------------------------+
+5 rows in set (0.00 sec)
+
+
+mysql> select student_id from student Order by student_id ASC;
++------------+
+| student_id |
++------------+
+|   20030001 |
+|   20040002 |
+|   20040003 |
+|   20060001 |
+|   20060002 |
+|   20070001 |
+|   20070002 |
+|   20070003 |
+|   20070005 |
+|   20070007 |
+|   20080003 |
+|   20100001 |
+|   20100003 |
+|   20110001 |
+|   20110002 |
++------------+
+15 rows in set (0.00 sec)
+
+mysql> select student_id from student Order by student_id DESC;
++------------+
+| student_id |
++------------+
+|   20110002 |
+|   20110001 |
+|   20100003 |
+|   20100001 |
+|   20080003 |
+|   20070007 |
+|   20070005 |
+|   20070003 |
+|   20070002 |
+|   20070001 |
+|   20060002 |
+|   20060001 |
+|   20040003 |
+|   20040002 |
+|   20030001 |
++------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from student
+    -> group by major
+    -> having avg(student.year)>=3;
++------------+-----------+------+---------+-------------------------+
+| student_id | name      | year | dept_no | major                   |
++------------+-----------+------+---------+-------------------------+
+|   20060001 | Queenie   |    4 |       4 | Business Administration |
+|   20060002 | Roosevelt |    3 |       1 | Computer Science        |
+|   20030001 | Reonardo  |    4 |       2 | Electronic Engineering  |
+|   20040002 | Selina    |    4 |       5 | English Literature      |
+|   20070003 | April     |    4 |       3 | Law                     |
++------------+-----------+------+---------+-------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select major from student group by major having avg(student.year)>=3;
++-------------------------+
+| major                   |
++-------------------------+
+| Business Administration |
+| Computer Science        |
+| Electronic Engineering  |
+| English Literature      |
+| Law                     |
++-------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select *from student where major='Business Administration' and student_id like '%2007%' limit 2;
++------------+------------+------+---------+-------------------------+
+| student_id | name       | year | dept_no | major                   |
++------------+------------+------+---------+-------------------------+
+|   20070001 | Ellen      |    4 |       4 | Business Administration |
+|   20070002 | James Bond |    3 |       4 | Business Administration |
++------------+------------+------+---------+-------------------------+
+2 rows in set (0.00 sec)
+
+
+
+
+
