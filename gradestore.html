@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Grade Store</title>
-		<link href="http://selab.hanyang.ac.kr/courses/cse326/2015/problems/pResources/gradestore.css" type="text/css" rel="stylesheet" />
+		<link href="http://selab.hanyang.ac.kr/courses/cse326/labs/labResources/gradestore.css" type="text/css" rel="stylesheet" />
 	</head>
 	
 	<body>
@@ -18,38 +18,45 @@
 		<h2>Buy your Grade today!</h2>
 		
 		<!-- create an HTML Form -->
-		<form action="cheater.php" method="post">
-			<div>
-		
-			Name: <input type: "text" name="name" /> 
-			ID: <input type: "text" name="ID" /> <p></p>
 			
-			Course: 
-				CSE326 <input type="checkbox" name="course[]" value="CSE326" /> 
-				CSE107 <input type="checkbox" name="course[]" value="CSE107" /> 
-				CSE603 <input type="checkbox" name="course[]" value="CSE603" />  
-				CIN870 <input type="checkbox" name="course[]" value="CIN870" /> <p></p>
-			Grade: 
-			<select name="grade">
-				<option selected="slected">A+</option>
-				<option>A</option>
-				<option>B+</option>
-				<option>B</option>
-			</select>
-			<p></p>
-			Credit Card: 
-				<input type: "text" name="credit_card_number" /> 
-				<input type="radio" name="credit" value="Visa"/> Visa
-				<input type="radio" name="credit" value="MasterCard" /> MasterCard
-				<p></p>
-			<div>
+			<!--
+			Name:
+			ID: 
+			-->
+			<form action="cheater.php" method="post">
+				<div>
+					Name:<input type="text" name="Usrname"/>
+					ID:<input type="text" name="IDID"/>
+					<br/>
 
-			<div id="submitbutton">
+					Course:<input type="checkbox" name="CSE326" checked="checked"/> CSE326
+					<input type="checkbox" name="CSE107"/> CSE107
+					<input type="checkbox" name="CSE603"/> CSE603
+					<input type="checkbox" name="CIN870"/> CIN870
+					<br/>
+
+					Grade:<select name="gradeSelect">
+							<option value="A+"selected="selected">A+</option>  
+							<option value="A">A</option>
+							<option value="B+">B+</option>
+							<option value="B">B</option>
+					</select>
+					<br/>
+
+					Credit Card: <input type="text" name="CCN"/>
+					<input type="radio" name="CT" value="Visa"/>Visa
+					<input type="radio" name="CT" value="MasterCard"/>MasterCard
+					<br/>
+				</div>
+			
+				<div id="submitbutton">
 				<!-- create submit button here -->
-				<input type="submit" name="giant_cheater_submit" value="I am a giant cheater!" />
-			</div>
+					<input type="submit" name="BTsubmit" value="I am a giant cheator!"/>
+				</div>
 
-			</form>
+			</form>	
+	
+			
 
 	</body>
 </html>
